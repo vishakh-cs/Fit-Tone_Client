@@ -1,7 +1,9 @@
 import Axios from 'axios';
 
+
+const baseURL = import.meta.env.VITE_SERVER_URL;
 const API = Axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL,
 })
 
 export const UserSignup = async (data) => API.post("/User/signup", data);
