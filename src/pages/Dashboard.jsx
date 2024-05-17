@@ -16,15 +16,13 @@ function Dashboard() {
   const addNewWorkout = async () => {
     setButtonLoading(true);
     const token = localStorage.getItem("fittone-app-token");
-    try {
-      const response = await addWorkout(token, { workoutString: workout });
-      setWorkouts([...workouts, response.data]);
-      setButtonLoading(false);
-      alert("Workout added successfully!");
-    } catch (err) {
-      alert(err);
-      setButtonLoading(false);
-    }
+    await addWorkout(token, { workoutString: workout })
+      .then((res) => {
+        setButtonLoading(false);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   const fetchAllWorkoutData = async () => {
